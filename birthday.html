@@ -1,0 +1,208 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>🎉 Birthday Countdown 🎉</title>
+    <style>
+        /* General Styling */
+        body, html {
+            margin: 0;
+            padding: 0;
+            font-family: 'Arial', sans-serif;
+            height: 100vh;
+            overflow: hidden;
+        }
+
+        /* Countdown Page Styling */
+        .countdown-page {
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #fbc2eb, #a18cd1);
+            text-align: center;
+            height: 100vh;
+            transition: background 1s ease-in-out;
+        }
+
+        h1 {
+            font-size: 4vw; /* Responsive font size */
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            margin-bottom: 5vh; /* Responsive margin */
+        }
+
+        h2 {
+            font-size: 3vw; /* Responsive font size */
+            color: #fff;
+            text-shadow: 2px 2px 4px #000;
+            margin-top: 2vh; /* Responsive margin */
+        }
+
+        /* Countdown Timer Styling */
+        #countdown {
+            margin-top: 2vh; /* Responsive margin */
+        }
+
+        #timer {
+            display: flex;
+            justify-content: center;
+            font-size: 4vw; /* Responsive font size */
+            margin: 2vh 0; /* Responsive margin */
+            flex-wrap: wrap;
+        }
+
+        #timer div {
+            margin: 2vh; /* Responsive margin */
+            background-color: rgba(255, 255, 255, 0.2);
+            padding: 3vh; /* Responsive padding */
+            border-radius: 10px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+
+        #timer span {
+            display: block;
+            font-size: 8vw; /* Responsive font size */
+            color: #fff;
+        }
+
+        /* Reveal Page Styling */
+        .reveal-page {
+            display: none;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center; /* Center align items */
+            background: linear-gradient(to bottom, #ffec40, #ffebc4); /* Beautiful background gradient */
+            text-align: center;
+            height: 100vh;
+            position: relative; /* Allow positioning of decorations */
+            overflow: hidden; /* Ensure animations are contained */
+        }
+
+        /* Happy Birthday Message */
+        #message {
+            font-size: 4vw; /* Responsive font size */
+            color: black; /* Black text color */
+            padding: 2vh 4vw; /* Responsive padding */
+            border-radius: 10px;
+            animation: fadeInScale 2s ease-in-out;
+            transition: all 1s ease;
+            margin-top: 2vh; /* Responsive margin */
+        }
+
+        /* Cursive Heading */
+        #happyBirthdayHeading {
+            font-family: 'Pacifico', cursive;
+            font-size: 5vw; /* Responsive font size */
+            color: black; /* Black text color */
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+            margin: 2vh 0;
+            position: absolute; /* Position at the top */
+            top: 5%; /* 5% from the top */
+        }
+
+        /* Centered Image Styling */
+        #revealImage {
+            width: 380px; /* Fixed width */
+            height: 380px; /* Fixed height */
+            margin-top: 52px; /* Adjusted to position the image 10px down from center */
+            animation: popUp 0.5s ease forwards; /* Animation for the image */
+            transition: margin-top 3s; /* Smooth transition for margin */
+            box-shadow: 0 4px 20px rgba(255, 255, 0, 0.5); /* Yellow box shadow */
+        }
+
+        /* Animations */
+        @keyframes fadeInScale {
+            0% { opacity: 0; transform: scale(0.5); }
+            100% { opacity: 1; }
+        }
+
+        @keyframes popUp {
+            0% { transform: translateY(50px); opacity: 0; }
+            100% { transform: translateY(0); opacity: 1; }
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            h1 {
+                font-size: 5vw; /* Adjusted size for smaller screens */
+            }
+
+            h2 {
+                font-size: 4vw; /* Adjusted size for smaller screens */
+            }
+
+            #timer {
+                font-size: 6vw; /* Adjusted size for smaller screens */
+            }
+
+            #timer span {
+                font-size: 10vw; /* Adjusted size for smaller screens */
+            }
+
+            #happyBirthdayHeading {
+                font-size: 6vw; /* Adjusted size for smaller screens */
+            }
+
+            #revealImage {
+                width: 320px; /* Adjusted size for smaller screens */
+                height: 320px; /* Adjusted height for smaller screens */
+                margin-top: 55px; /* Adjusted margin for smaller screens */
+            }
+        }
+    </style>
+    <link href="https://fonts.googleapis.com/css2?family=Pacifico&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Countdown Page -->
+    <div id="countdownPage" class="countdown-page">
+        <h1>🎉 Countdown to Your Special Day! 🎉</h1>
+        <div id="countdown">
+            <h2>Time Remaining:</h2>
+            <div id="timer">
+                <div><span id="days"></span>Days</div>
+                <div><span id="hours"></span>Hours</div>
+                <div><span id="minutes"></span>Minutes</div>
+                <div><span id="seconds"></span>Seconds</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Reveal Page -->
+    <div id="revealPage" class="reveal-page">
+        <h2 id="happyBirthdayHeading">🎂 Happy Birthday Krishna! 🎂</h2>
+
+        <!-- Image using relative path -->
+        <img id="revealImage" src="./image.png" alt="Birthday Cake">
+    </div>
+
+    <script>
+        // Set the target date for today at 8:35 PM
+        const targetDate = new Date();
+        targetDate.setHours(21, 8, 0);
+
+        // Countdown timer
+        const countdownInterval = setInterval(function() {
+            const now = new Date().getTime();
+            const timeRemaining = targetDate - now;
+
+            const days = Math.floor(timeRemaining / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeRemaining % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeRemaining % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeRemaining % (1000 * 60)) / 1000);
+
+            document.getElementById('days').innerText = days;
+            document.getElementById('hours').innerText = hours;
+            document.getElementById('minutes').innerText = minutes;
+            document.getElementById('seconds').innerText = seconds;
+
+            if (timeRemaining <= 0) {
+                clearInterval(countdownInterval);
+                document.getElementById('countdownPage').style.display = 'none';
+                document.getElementById('revealPage').style.display = 'flex';
+            }
+        }, 1000);
+    </script>
+</body>
+</html>
