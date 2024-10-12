@@ -97,7 +97,7 @@
             font-size: 5vw; /* Responsive font size */
             color: black; /* Black text color */
             text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
-            margin: 2vh 0;
+            margin: 2vh 0; /* Adjust margin to separate from image */
             position: absolute; /* Position at the top */
             top: 5%; /* 5% from the top */
         }
@@ -107,7 +107,7 @@
             width: 100%; /* Make the image full width */
             max-width: 500px; /* Set a max-width for larger screens */
             height: auto; /* Maintain aspect ratio */
-            margin-top: 4vh; /* Space below the heading */
+            margin-top: 6vh; /* Space below the heading */
             border-radius: 20px; /* Rounded corners for aesthetics */
             box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
             animation: popUp 0.5s ease forwards; /* Animation for the image */
@@ -149,6 +149,7 @@
             #revealImage {
                 width: 100%; /* Full width for smaller screens */
                 height: auto; /* Maintain aspect ratio */
+                margin-top: 6vh; /* Add margin to separate from heading */
             }
         }
     </style>
@@ -178,9 +179,8 @@
     </div>
 
     <script>
-        // Set the target date for today at 8:35 PM
-        const targetDate = new Date();
-        targetDate.setHours(21, 8, 0);
+        // Set the target date for October 13, 2024
+        const targetDate = new Date("2024-10-13T00:00:00");
 
         // Countdown timer
         const countdownInterval = setInterval(function() {
