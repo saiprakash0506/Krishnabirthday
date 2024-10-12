@@ -73,7 +73,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center; /* Center align items */
-            background-color: #FFB6C1; /* Light pink background */
+            background: linear-gradient(to bottom, #ffec40, #ffebc4); /* Beautiful background gradient */
             text-align: center;
             height: 100vh;
             position: relative; /* Allow positioning of decorations */
@@ -104,14 +104,13 @@
 
         /* Centered Image Styling */
         #revealImage {
-            border: 2px solid black;
-            width: 800px; /* Increased width for visibility */
-            height: 800px; /* Increased height for visibility */
-            border-radius: 20px; /* Curved borders */
-            margin-top: 52px; /* Adjusted to position the image */
+            width: 100%; /* Make the image full width */
+            max-width: 500px; /* Set a max-width for larger screens */
+            height: auto; /* Maintain aspect ratio */
+            margin-top: 4vh; /* Space below the heading */
+            border-radius: 20px; /* Rounded corners for aesthetics */
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2); /* Subtle shadow for depth */
             animation: popUp 0.5s ease forwards; /* Animation for the image */
-            transition: margin-top 3s; /* Smooth transition for margin */
-            box-shadow: 0 4px 20px rgba(255, 255, 0, 0.5); /* Yellow box shadow */
         }
 
         /* Animations */
@@ -148,9 +147,8 @@
             }
 
             #revealImage {
-                width: 500px; /* Adjusted size for smaller screens */
-                height: 500px; /* Adjusted height for smaller screens */
-                margin-top: 55px; /* Adjusted margin for smaller screens */
+                width: 100%; /* Full width for smaller screens */
+                height: auto; /* Maintain aspect ratio */
             }
         }
     </style>
