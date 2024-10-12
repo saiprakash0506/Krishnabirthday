@@ -73,7 +73,7 @@
             flex-direction: column;
             justify-content: center;
             align-items: center; /* Center align items */
-            background: linear-gradient(to bottom, #ffec40, #ffebc4); /* Beautiful background gradient */
+            background-color: #FFB6C1; /* Light pink background */
             text-align: center;
             height: 100vh;
             position: relative; /* Allow positioning of decorations */
@@ -104,9 +104,11 @@
 
         /* Centered Image Styling */
         #revealImage {
-            width: 380px; /* Fixed width */
-            height: 380px; /* Fixed height */
-            margin-top: 52px; /* Adjusted to position the image 10px down from center */
+            border: 2px solid black;
+            width: 800px; /* Increased width for visibility */
+            height: 800px; /* Increased height for visibility */
+            border-radius: 20px; /* Curved borders */
+            margin-top: 52px; /* Adjusted to position the image */
             animation: popUp 0.5s ease forwards; /* Animation for the image */
             transition: margin-top 3s; /* Smooth transition for margin */
             box-shadow: 0 4px 20px rgba(255, 255, 0, 0.5); /* Yellow box shadow */
@@ -146,8 +148,8 @@
             }
 
             #revealImage {
-                width: 320px; /* Adjusted size for smaller screens */
-                height: 320px; /* Adjusted height for smaller screens */
+                width: 500px; /* Adjusted size for smaller screens */
+                height: 500px; /* Adjusted height for smaller screens */
                 margin-top: 55px; /* Adjusted margin for smaller screens */
             }
         }
